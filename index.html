@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashing Colors</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="text">Flashing Colors!</div>
+  <div id="indicator" style="position: absolute; bottom: 20px; font-size: 18px;">Current Color: None</div>
+
+  <script>
+    const body = document.body;
+    const text = document.getElementById("text");
+    const indicator = document.getElementById("indicator");
+    const colors = ["green", "red"];
+    let lastColor = "";
+
+    function flashColors() {
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      const newColor = colors[randomIndex];
+      body.style.backgroundColor = newColor;
+
+      if (newColor === lastColor) {
+        indicator.textContent = `Current Color: ${newColor} (unchanged)`;
+      } else {
+        indicator.textContent = `Current Color: ${newColor}`;
+      }
+
+      lastColor = newColor;
+    }
+
+    setInterval(flashColors, Math.random() * 1000 + 500); // Random interval between 500ms and 1500ms
+  </script>
+</body>
+</html>
